@@ -1,0 +1,148 @@
+1)Crear plantilla general en html
+
+2)"Cortar" la plantilla poniendo el header en un archivo, y el footer en otro archivo. El index.php va a cargar el contenido en sí mismo con los controladores. Guardar en la carpeta /views/layout/header.php|footer.php
+
+3)Crear el archivo index.php, con los require_once del header y el footer. Al medio se le puede poner un contenido de prueba para corroborar que haya cargado correctamente.
+
+4)Crear el archivo parameters.php y agregar la variable global "base_url" que se va a usar en el resto del proyecto. Define la raíz del mismo para cargar los distintos archivos. 
+
+define("base_url", "http://localhost:8080/curso-udemy-php/29-mvc-lu/");
+
+Guardar en /config/parameters.php
+Llamar con require_once desde index.php
+
+4.1)Cambiar en views/layouts/header.php el href de la hoja de estilos a href="<?=base_url?>/assets/css/estilos.css".
+
+5)Crear la carpeta /controllers para poner los controladores dentro. Luego crear el archivo /autoload.php con el siguiente texto, para que cargue todos los controladores necesarios.
+
+<?php
+
+function controllers_autoload($classname){
+	include 'controllers/' . $classname . '.php';
+}
+
+spl_autoload_register('controllers_autoload');
+
+6)Crear la carpeta /models.
+
+7)En /config/parameters definir las variables de controladores y acciones por defecto:
+
+define("controller_default", "inicioController");
+define("action_default", "inicio");
+
+8)Crear archivo /.htaccess
+
+<IfModule mod_rewrite.c>
+# Activar rewrite
+RewriteEngine On
+ErrorDocument 404 http://localhost:8080/curso-udemy-php/29-mvc-lu/error/
+
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+RewriteRule ^(.*)/(.*) index.php?controller=$1&action=$2
+</IfModule>
+
+9)Crear un controlador, en /controllers/[nombre]Controller.php.
+
+<?php
+
+	class inicioController{
+		public function inicio(){
+			echo 'Este es el inicio!';
+		}
+	}
+
+?>
+
+Se puede llamar desde el index.php mediante:
+
+$controlador = new inicioController();
+$controlador->inicio();
+
+Listo, funca el controlador. Ahora, para activar la magia del MVC (?), al ingresar /[parametro1]/[parametro2] eso te lo toma por defecto como parámetro controller y action respectivamente, según se definió en RewriteRule ^(.*)/(.*) index.php?controller=$1&action=$2
+
+Entonces, en el index, hay que chequear si recibo esos dos parámetros para ver a qué controlador llamo. Para esto primero debo chequear si recibí el parámetro del Controlador. En caso que no lo reciba, puedo llamar a un controlador "error" (tengo que crearlo). También chequeo si pasó el parámetro action mediante el siguiente código:
+
+	function show_error(){
+		$error = new errorController();
+		$error->index();
+	}
+
+	if(!isset($_GET['controller']) && !isset($_GET['action'])){	
+		$nombre_controlador = controller_default;
+		$action_default = action_default;
+
+		$controlador = new $nombre_controlador();
+		$controlador->$action_default();
+	}else{
+		//Tengo el controlador (primer parámetro)
+		$nombre_controlador = $_GET['controller'].'Controller';
+		$controlador = new $nombre_controlador();
+
+		if(class_exists($nombre_controlador)){
+			// El controlador existe, tengo que verificar si me llega la acción
+			// (aunque con la configuración actual de .htaccess [supongo] da error si le paso solo controller)
+
+			if(isset($_GET['action'])){
+				// Esta seteado el parámetro, me fijo si existe, si no existe le mando error
+				if(method_exists($controlador, $_GET['action'])){
+					// Le mando el método de esa acción
+					$action = $_GET['action'];
+					$controlador->$action();
+				}else{
+					// La acción no existe, le mando error
+					show_error();
+				}
+			}else{
+				// La acción no existe pero sí el controlador, le mando acción por defecto
+				$action_default = action_default;
+				$controlador->$action_default();
+			}			
+		}else{function show_error(){
+		$error = new errorController();
+		$error->index();
+	}
+
+	if(!isset($_GET['controller']) && !isset($_GET['action'])){	
+		$nombre_controlador = controller_default;
+		$action_default = action_default;
+
+		$controlador = new $nombre_controlador();
+		$controlador->$action_default();
+	}else{
+		//Tengo el controlador (primer parámetro)
+		$nombre_controlador = $_GET['controller'].'Controller';
+		$controlador = new $nombre_controlador();
+
+		if(class_exists($nombre_controlador)){
+			// El controlador existe, tengo que verificar si me llega la acción
+			// (aunque con la configuración actual de .htaccess [supongo] da error si le paso solo controller)
+
+			if(isset($_GET['action'])){
+				// Esta seteado el parámetro, me fijo si existe, si no existe le mando error
+				if(method_exists($controlador, $_GET['action'])){
+					// Le mando el método de esa acción
+					$action = $_GET['action'];
+					$controlador->$action();
+				}else{
+					// La acción no existe, le mando error
+					show_error();
+				}
+			}else{
+				// La acción no existe pero sí el controlador, le mando acción por defecto
+				$action_default = action_default;
+				$controlador->$action_default();
+			}			
+		}else{
+			// El controlador no existe, le mando el error
+			show_error();
+		}
+	}
+			// El controlador no existe, le mando el error
+			show_error();
+		}
+	}
+
+// Ojo, no se que onda cuando llamo a /sarasa/lalala (controlador y acción que no existen), si llamo a /sarasa solamente sí da error... ver...
+

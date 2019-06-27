@@ -1,0 +1,20 @@
+*{
+	margin:0px;
+	padding:0px;
+}
+
+body{
+	font-family: Arial;
+	background: #CCC;
+}
+
+div#centro{
+	width: 900px;
+	margin: 0 auto;
+	background: white;
+	min-height: 100vh;
+}
+
+div#contenido{
+	padding: 40px;
+}
