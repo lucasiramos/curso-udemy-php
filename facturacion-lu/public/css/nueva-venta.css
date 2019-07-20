@@ -1,0 +1,8 @@
+div#productos img{
+	max-width: 50px;
+	max-height: 50px;
+	border: 2px solid #555;
+	float: left;
+	margin-bottom: 10px;
+	margin-right: 10px;
+}

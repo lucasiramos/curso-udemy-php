@@ -1,0 +1,10 @@
+#tblVentas th{
+	background-color: #666;
+	color: white;
+	font-size: 16px;
+}
+
+#tblVentas td, #tblVentas th{
+	padding: 8px;
+	border: 1px solid #666;
+}

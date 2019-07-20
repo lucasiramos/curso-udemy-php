@@ -1,0 +1,6 @@
+.producto-listado{
+	max-height: 300px;
+	max-width: 300px;
+	border: 4px solid #666;
+	border-radius: 8px;
+}

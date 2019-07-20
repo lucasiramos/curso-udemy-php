@@ -1,0 +1,78 @@
+Instalación de este proyecto:
+Para crear este proyecto, ir a la carpeta padre, y ahi escribir
+	composer create-project laravel/laravel [nombre proyecto] "5.6.*" --prefer-dist
+El proyecto ya se puede ejecutar en:
+	http://localhost:8080/[nombre proyecto]/public/
+
+Importante! Crear los modelos, esto te permite despues relacionar las tablas más fácilmente
+	php artisan make:model [NombreModelo] // Hacer uno por cada tabla
+	En cada modelo agregar el nombre de la tabla en una variable con:
+		protected $table = '[nombre tabla]';
+
+Una vez creados los modelos, crear la autenticación de usuarios con:
+	php artisan make:auth
+
+	Luego, para crear la tabla de usuarios
+
+	Ver esta página, es para cambiar la tabla base Users que usa Laravel por defecto para guardar los usuarios
+	(en caso que quiera usar otra en particular)
+		https://www.5balloons.info/changing-authentication-table-laravel/
+
+	Si ya tengo la tabla creada, no es necesario correr la migración.
+	Hay que modificar el modelo de esa tabla (App/[Modelo]) para hacerlo "Usuariable" (?)
+		Poner en la parte superior:
+			use Illuminate\Notifications\Notifiable;
+			use Illuminate\Foundation\Auth\User as Authenticatable;
+			(Si tiene el use Illuminate\...\Model, sacarlo)
+		class Vendedor extends Authenticatable // antes extends Model
+		Dentro de la Clase, como primeras líneas poner:
+			use Notifiable;
+			protected $table = '[Nombre tabla custom]';
+
+		Poner los campos "rellenables" (por alguna razón no está la imagen...¿se agrega solo en update?)
+			protected $fillable = [
+        			'nombre','apellido','email', 'passcode','active'
+    			];
+
+		Poner los campos "ocultos"
+			//Campos ocultos (¿por qué se repite el pass?)
+			protected $hidden = [
+				'password', 'remember_token',
+			];
+
+		Después sí poner las relaciones ORM necesarias (hasMany y BelongsTo)
+
+	El siguiente paso es modificar el archivo /config/auth.php, que es lo que usa Laravel para conectar el objeto usuario con la BD
+		Buscar el objeto Providers ('providers' => [) y agregarle
+			'[Nombre tabla usuarios custom en BD]' => [
+				'driver' => 'eloquent',
+				'model' => App\[Modelo tabla usuarios]::class,
+			],
+
+		Buscar el objeto Passwords ('passwords' => [) y agregarle
+			'[Nombre tabla usuarios custom en BD]' => [
+				'provider' => '[Nombre tabla usuarios custom en BD]',
+				'table' => 'password_resets',
+				'expire' => 60,
+			],
+
+		Buscar el objeto Guards ('guards' => [), y en 'web' reemplazar:
+			'provider' => 'users', por 'provider' => '[Nombre tabla usuarios custom en BD]'
+
+		Lo mismo para objeto Defaults ('defaults' => [)
+			'passwords' => 'users', por 'passwords' => '[Nombre tabla usuarios custom en BD]',
+
+	Luego, abrir el archivo /app/Http/Controllers/Auth/RegisterController.php
+		Buscar use App\User; y reemplazar por use App\[Modelo correspondiente a tabla];
+		Cambiar en "return Validator::make($data, [" las validaciones necesarias (ojo nombre campos)
+			En email valida con un unique:users, cambiar por unique:[Nombre tabla en BD]
+		
+		En protected function create(array $data) cambiar:
+			return [Modelo tabla en BD]::create([
+			Poner los campos que se quieran devolver....o algo... no poner los created_at, o remember_token
+
+	Siguiente paso, modificar /resources/views/auth/register.blade.php
+
+	Listo!
+
+Crear storages para subir archivos

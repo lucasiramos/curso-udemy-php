@@ -12,6 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/main.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -19,6 +20,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -49,10 +51,20 @@
                             </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="">Inicio</a>
+                                <a class="nav-link" href="{{ route('home') }}">Inicio</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="">Subir imagen</a>
+                                <a class="nav-link" href="{{ route('image.create') }}">Subir imagen</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('likes') }}">Imágenes que me re copan (?)</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('user.index') }}">Gente</a>
+                            </li>
+
+                            <li>
+                                @include('includes.avatar')
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -60,8 +72,8 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="">Mi perfil</a>
-                                    <a class="dropdown-item" href="">Configuración</a>
+                                    <a class="dropdown-item" href="{{ route('profile', ['id' => Auth::user()->id]) }}">Mi perfil</a>
+                                    <a class="dropdown-item" href="{{ route('config') }}">Configuración</a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
