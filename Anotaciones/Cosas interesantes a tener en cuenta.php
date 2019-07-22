@@ -388,6 +388,9 @@
     //	Para agregar la paginación dentro de la vista:
     //		{{ $images->links() }}
 
+    //Manejo de Json en Laravel (o PHP en realidad)
+    //	Ver /facturacion-lu/JsonController
+
 ////////////////////////////////////////////////////////////////////////////////////////////
 // COSAS PARA REVISAR
 //		Ver validación en Laravel... ¿objeto Validate?

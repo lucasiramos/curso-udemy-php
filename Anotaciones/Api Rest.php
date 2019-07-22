@@ -147,15 +147,57 @@ Crear un Registro en la BD
 
 No se pueden guardar datos de sesión en el Server!!
 
+///////////////////////////////////////////////////////////////////////////////////
 
+Guzzle / Para consumir APIRest desde Laravel
 
+	Instalación con composer: En la carpeta raíz del proyecto hacer:
+		composer require guzzlehttp/guzzle
 
+	Dentro del controlador que queremos usar para consumir poner arriba:
+		use GuzzleHttp\Client;
 
+	Para llamar a un API Endpoint:
+		$client = new Client([
+			'base_uri' => 'https://jsonplaceholder.typicode.com',
+			'timeout'  => 2.0,
+		]);
 
+		//Time out está en segundos... si no lo queremos borramos la línea, por defecto es 0
 
+		$response = $client->request('GET', 'posts');
+			Esto se conecta a https://jsonplaceholder.typicode.com/posts
 
+		OJO! Tuve un problema con certificados, para esto seguí este post:
+			https://github.com/guzzle/guzzle/issues/1935
+			https://stackoverflow.com/questions/24611640/curl-60-ssl-certificate-unable-to-get-local-issuer-certificate
 
+		Si hago un dd($response); veo lo que devuelve el endpoint
+		Con un dd($response->getBody()->getContents()); accedo al contenido de lo que me devuelve 
 
+		Con return json_decode($response->getBody()->getContents()); lo devuelvo en formato JSON
+
+		Codigo final para pasarlo a una vista:
+			$posts = json_decode($response->getBody()->getContents());
+			return view('posts.index', ['posts' => $posts]);
+	
+	Llamar con parámetro
+		public function post($id){
+	    	$client = new Client([
+				'base_uri' => 'https://jsonplaceholder.typicode.com',
+				'timeout'  => 2.0,
+			]);
+
+			//$response = $client->request('GET', 'posts/{$id}');
+			$response = $client->request('GET', 'posts/' . $id);
+
+			$post = json_decode($response->getBody()->getContents());
+
+			return view('posts.show', ['post' => $post]);
+
+	    }
+
+	
 
 
 

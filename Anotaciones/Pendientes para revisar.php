@@ -1,3 +1,5 @@
+<!-- 
+
 En instalación, chequear la versión de Laravel. Cuando hice el curso era "5.6.*"... ¿cual debería usar?
 También en instalación, el comando pone al final "--prefer-dist"... ¿que onda, se pone siempre?
 
@@ -10,11 +12,8 @@ Como hacer para configurar el UTF-3 a nivel general. Lo puedo hacer particularme
 	date_default_timezone_set('America/Argentina/Buenos_Aires');
 	O bien ver que tome la hora/configuración local del server.
 
-API Rest --> consumir y armar
-	Ver códigos de errores
 Como usar los tokens para autenticación
 Repasar Migraciones
-CORS
 Cron Jobs
 SSL - Certificados de seguridad... ¿como implementarlos?
 Como administrar una caché en Laravel
@@ -24,6 +23,40 @@ Imagenes en Storages, que sean descargables
 Como realizar compras/pagos
 Laravel Passport
 Login con face/twt/google
+Laravel 404 // Personalizar
+
+Ver webtraining.zone
+
+//////////////////////////////////////////
+LISTOS
+
+API Rest // consumir y armar
+	Ver códigos de errores // Esta en Wikipedia
 
 Carbon.... (?) // Es para manejar fechas
-Ver webtraining.zone
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->

@@ -1,3 +1,5 @@
+<!-- 
+
 *Para crear un proyecto de Git, hacer click derecho en la carpeta (en este caso Proyecto), y darle Git Bash here. Te abre un bash de Git para ejecutar los comandos en esa carpeta.
 
 *El comando para crear un proyecto es git init.
@@ -44,3 +46,8 @@
 Subir a GitHub
 
 *git remote add origin https://github.com/lucasiramos/pruebas-git.git // Esto es para indicarle a que proyecto de GitHub tiene que subir, es decir, al repositorio creado
+
+*Para efectivamente terminar de subir todo a la nube hay que hacer
+	git push -u origin master
+
+-->
