@@ -52,6 +52,7 @@
 
 	//Contar los elementos en un request
 	//	count(collect($request)) // No se si habrá una manera mejor de hacerlo, esto da todos los elementos + 1
+	
 	/////////////////////////////////////////////////////////////////////////////////////////
 	//LARAVEL!
 
@@ -135,7 +136,7 @@
 	//	Abrir archivo /config/database.php
 
 	//Crear migraciones
-	//	php artisan make:migration create_usuarios_table --table=usuarios
+	//	php artisan make:migration create_usuarios_table --create=usuarios
 	//	Trabajar con migraciones es más seguro y es mejor para proyectos grandes
 	//	Esto crea un archivo en /database/migrations, con una estructura para crear una tabla
 	//	Método up crea la tabla
@@ -182,6 +183,7 @@
     //Controladores en Laravel
     //	Para crear un controlador en Laravel se puede ir a la consola y escribir
    	//		php artisan make:controller FrutaController
+    //		(crea en /app/Http/Controllers)
 
     //	En el return view de un controlador, si la vista esta en una carpeta se pone:
     //		return view('[Nombre carpeta].[Nombre vista]');

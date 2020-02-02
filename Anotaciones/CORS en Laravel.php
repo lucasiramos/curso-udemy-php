@@ -4,7 +4,7 @@ CORS
 	Agregar un Middleware llamado Cors
 		php artisan make:middleware Cors
 
-	En ese middleware:
+	En ese middleware: /app/Http/Middleware/Cors.php
 		public function handle($request, Closure $next)
 	    {
 	        return $next($request)
