@@ -19,8 +19,10 @@ class ProductoController extends Controller
 				$unProducto = [
 					'id' => $producto->id, 
 					'nombre' => $producto->nombre, 
-					'descripcion' => $producto->descripcion, 
+					'descripcion' => $producto->descripcion,
 					'imagen' => config('global.URL') . '/' . $producto->imagen,
+					'categoria' => $producto->categoria,
+					'marca' => $producto->marca,
 					'precio' => $producto->precio
 				];
 

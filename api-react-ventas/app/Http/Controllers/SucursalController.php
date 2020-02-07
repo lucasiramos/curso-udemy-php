@@ -11,4 +11,8 @@ class SucursalController extends Controller
 
     	return view('sucursales.listado', ['valorServer' => $unValorGeneradoEnPhp, 'otroValor' => 'Lalala otro valor']);
     }
+
+    public function holaworld(){
+    	return 'helou mundo';
+    }
 }

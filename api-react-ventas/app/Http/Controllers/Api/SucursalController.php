@@ -52,4 +52,24 @@ class SucursalController extends Controller
 			return response()->json(['error' => 'Sucursal no encontrada'], 404);
 		}
 	}
+
+	public function holamundis(){
+		$devuelvo = [];
+
+		$unItem = [
+			'nombre' => 'Lucas',
+			'apellido' => 'Ramos',
+		];
+
+		array_push($devuelvo, $unItem);
+
+		$unItem = [
+			'nombre' => 'Fulano',
+			'apellido' => 'de tal',
+		];
+
+		array_push($devuelvo, $unItem);
+
+		return $devuelvo;
+	}
 }

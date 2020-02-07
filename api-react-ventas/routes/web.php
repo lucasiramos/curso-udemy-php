@@ -21,7 +21,7 @@ Route::get('/', function () {
 });*/
 Route::get('/sucursales', 'SucursalController@index')->name('sucursales');
 
-
+Route::get('/holamundis','SucursalController@holaworld')->name('holis');
 
 
 ///////////////////////////////////////////////////////////////////

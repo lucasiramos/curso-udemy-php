@@ -17,8 +17,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/sucursales', 'Api\SucursalController@index')->name('sucursales');
+// Esto funca
+//Route::get('/sucursales', 'Api\SucursalController@index')->name('sucursales');
 Route::get('/sucursal/{id}','Api\SucursalController@sucursal')->name('sucursal');
+//Route::get('/holamundis','Api\SucursalController@holamundis')->name('holis');
 Route::get('/productos',[
 						'middleware' => 'cors',
 						'uses' => 'Api\ProductoController@index',
@@ -27,3 +29,14 @@ Route::get('/productos',[
 
 
 Route::get('/producto/{id}', 'Api\ProductoController@producto')->name('producto');
+
+
+// Rutas abiertas
+Route::post('/login', 'AuthController@login');
+Route::post('/register', 'AuthController@register');
+
+// Cerradas por Tokens
+Route::group(['middleware' => 'jwt.auth'], function () {
+    Route::post('/logout', 'AuthController@logout');
+    Route::get('/sucursales', 'Api\SucursalController@index')->name('sucursales');
+});

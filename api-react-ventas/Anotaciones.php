@@ -117,7 +117,7 @@
 
 				Actualizar función validator y create, con los valores correspondientes
 
-	Hacer las exportaciones (SUPER FACIL) como estan en los Controladores
+	Hacer las exportaciones (es SUPER FACIL) como estan en los Controladores
 
 	IMPORTANTE! Hay que habilitar los cors!!
 		Agregar un Middleware llamado Cors
@@ -141,6 +141,166 @@
 				'uses' => 'ApiController@hello',
 				'as' => 'api.hello'
 			]);		
+
+	Voy a intentar hacer autenticación con JWT (JSON Web Token), para autenticar a APIs (como las que voy a usar en React)
+		Voy a seguir los pasos de esta página:
+			https://blog.nexlab.dev/tech/2019/05/30/utiliza-jwt-con-laravel-para-apis.html
+
+		Primero, instalar con composer el módulo de JWT:
+			composer require tymon/jwt-auth:dev-develop --prefer-source
+
+		Generar el archivo de configuración con:
+			php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
+		
+		Generar una llave con: 
+			php artisan jwt:secret
+
+		Agregar estos métodos al Modelo de User:
+			public  function  getJWTIdentifier() {
+				return  $this->getKey();
+			}
+
+			public  function  getJWTCustomClaims() {
+				return [];
+			}
+
+		Cambiar en /config/auth.php:
+			'defaults' => [
+				'guard' => 'api',
+				'passwords' => 'users',
+			],
+			(...)
+			'guards' => [
+				'api' => [
+					'driver' => 'jwt',
+					'provider' => 'users',
+				],
+			],
+
+		Luego se debe crear el controlador para manejar estas situaciones:
+			php artisan make:controller "Api/AuthController"
+
+			En este controlador pegar este código
+				use App\Http\Requests\RegisterAuthRequest;
+				use App\User;
+				use Illuminate\Http\Request;
+				use  JWTAuth;
+				use Tymon\JWTAuth\Exceptions\JWTException;
+				class  AuthController extends  Controller {
+					public  $loginAfterSignUp = true;
+
+					public  function  register(Request  $request) {
+						$user = new  User();
+						$user->name = $request->name;
+						$user->surname = $request->surname;
+						$user->email = $request->email;
+						$user->password = bcrypt($request->password);
+						$user->save();
+
+						if ($this->loginAfterSignUp) {
+							return  $this->login($request);
+						}
+
+						return  response()->json([
+							'status' => 'ok',
+							'data' => $user
+						], 200);
+					}
+
+					public  function  login(Request  $request) {
+						$input = $request->only('email', 'password');
+						$jwt_token = null;
+						if (!$jwt_token = JWTAuth::attempt($input)) {
+							return  response()->json([
+								'status' => 'invalid_credentials',
+								'message' => 'Correo o contraseña no válidos.',
+							], 401);
+						}
+
+						return  response()->json([
+							'status' => 'ok',
+							'token' => $jwt_token,
+						]);
+					}
+
+					public  function  logout(Request  $request) {
+						$this->validate($request, [
+							'token' => 'required'
+						]);
+
+						try {
+							JWTAuth::invalidate($request->token);
+							return  response()->json([
+								'status' => 'ok',
+								'message' => 'Cierre de sesión exitoso.'
+							]);
+						} catch (JWTException  $exception) {
+							return  response()->json([
+								'status' => 'unknown_error',
+								'message' => 'Al usuario no se le pudo cerrar la sesión.'
+							], 500);
+						}
+					}
+
+					public  function  getAuthUser(Request  $request) {
+						$this->validate($request, [
+							'token' => 'required'
+						]);
+
+						$user = JWTAuth::authenticate($request->token);
+						return  response()->json(['user' => $user]);
+					}
+				}
+
+		Crear las rutas en /routes/api.php
+			// estas rutas se pueden acceder sin proveer de un token válido.
+			Route::post('/login', 'AuthController@login');
+			Route::post('/register', 'AuthController@register');
+			// estas rutas requiren de un token válido para poder accederse.
+			Route::group(['middleware' => 'jwt.auth'], function () {
+				Route::post('/logout', 'AuthController@logout');
+			});
+
+		Importante 1!! 
+			Agregar en el Modelo de usuario estas lineas:
+				use Tymon\JWTAuth\Contracts\JWTSubject;
+				class User extends Authenticatable implements JWTSubject
+
+		Importante 2!!
+			Agregar en /app/Http/Kernel.php, en protected $routeMiddleware = [
+				'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
+        		'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class,
+
+		Puedo crear en PostMan un ejemplo:
+			En AuthController tengo este modelo de datos para crear un nuevo registro (en public function register):
+				$user = new User();
+				$user->name = $request->name;
+				$user->descripcion = $request->descripcion;
+				$user->admin = "0";
+				$user->email = $request->email;
+				$user->password = bcrypt($request->password);
+
+			Entonces, en PostMan puedo crear un nuevo POST:
+				url: http://localhost:4741/curso-udemy-php/api-react-ventas/public/api/register 
+					(chequear ruta)
+
+				Parámetros
+					Debajo de la caja donde pongo la URL, buscar la cuarta solapa, Body, y abajo elegir la opción "raw". En el cuadro de texto le ingreso un JSON correspondiente con la estructura del modelo de datos en public function register:
+						{
+							"name": "Tercero",
+							"descripcion": "Se va la tercera",
+							"email": "tercero@gmail.com",
+							"password": "UnaContrasenia"
+						}
+				
+				Al darle Send, me debería crear el usuario y me devuelve el token
+
+
+
+
+
+
+
 
 
 

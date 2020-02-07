@@ -1,0 +1,20 @@
+Primero, en el proyecto local, antes de subirlo a producción puse esto en composer.json
+
+"require": {
+     ...
+     "symfony/translation": "4.3.8",
+}
+
+Despues en la consola:
+	composer update
+
+Ahi actualiza las dependencias.
+
+Despues en la consola:
+	php artisan key:generate
+
+Y en .env
+	APP_URL=http://grupodemusicaliturgica.org.ar/deploy
+	(cambiar el localhost, la BD y Usuario BD)
+	
+OJO! Ver los permisos que requiere Laravel
