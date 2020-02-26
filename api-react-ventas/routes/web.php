@@ -14,21 +14,6 @@
 Route::get('/', function () {
 	return view('welcome');
 });
-
-// Con este comando devuelvo la vista directamente, es decir, estática, sin procesamiento de controlador
-/*Route::get('/sucursales', function () {
-	return view('sucursales.listado');
-});*/
-Route::get('/sucursales', 'SucursalController@index')->name('sucursales');
-
-Route::get('/holamundis','SucursalController@holaworld')->name('holis');
-
-
-///////////////////////////////////////////////////////////////////
-
-Route::get('/test', function () {
-	return view('test');
-});
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();

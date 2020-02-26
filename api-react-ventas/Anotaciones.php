@@ -121,7 +121,7 @@
 
 	IMPORTANTE! Hay que habilitar los cors!!
 		Agregar un Middleware llamado Cors
-		php artisan make:middleware Cors
+			php artisan make:middleware Cors
 
 		En ese middleware: /app/Http/Middleware/Cors.php
 			public function handle($request, Closure $next)
@@ -178,7 +178,7 @@
 			],
 
 		Luego se debe crear el controlador para manejar estas situaciones:
-			php artisan make:controller "Api/AuthController"
+			php artisan make:controller "AuthController"
 
 			En este controlador pegar este código
 				use App\Http\Requests\RegisterAuthRequest;
@@ -186,8 +186,8 @@
 				use Illuminate\Http\Request;
 				use  JWTAuth;
 				use Tymon\JWTAuth\Exceptions\JWTException;
-				class  AuthController extends  Controller {
-					public  $loginAfterSignUp = true;
+				class AuthController extends Controller {
+					public $loginAfterSignUp = true;
 
 					public  function  register(Request  $request) {
 						$user = new  User();
@@ -295,7 +295,24 @@
 				
 				Al darle Send, me debería crear el usuario y me devuelve el token
 
-
+		Para que en caso de unauthorized, token invalid/expired/blacklisted devuelva un JSON parseable, tengo que agregar lo siguente en el método render de /app/Exceptions/Handler.php:
+			public function render($request, Exception $exception)
+				{
+					// detect instance
+					if ($exception instanceof UnauthorizedHttpException) {
+						// detect previous instance
+						if ($exception->getPrevious() instanceof TokenExpiredException) {
+							return response()->json(['error' => 'Token expirado'], $exception->getStatusCode());
+						} else if ($exception->getPrevious() instanceof TokenInvalidException) {
+							return response()->json(['error' => 'Token inválido'], $exception->getStatusCode());
+						} else if ($exception->getPrevious() instanceof TokenBlacklistedException) {
+							return response()->json(['error' => 'Token blacklisted'], $exception->getStatusCode());
+						} else {
+							return response()->json(['error' => "No autorizado"], 401);
+						}
+					}
+					return parent::render($request, $exception);
+				}
 
 
 

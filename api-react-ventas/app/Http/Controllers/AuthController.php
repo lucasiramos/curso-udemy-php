@@ -1,8 +1,5 @@
 <?php
 
-// ****************************************************************************
-// A ver con esta??? (esta suelta)
-
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterAuthRequest;
