@@ -76,15 +76,15 @@
 	// 	Abrir httpd-vhosts.conf en C:\wamp64\bin\apache\apache2.4.37\conf\extra
 	//	Copiar una regla entera:
 		/*<VirtualHost *:80>   
-		    DocumentRoot "c:/wamp/www/symfony3"
-		    ServerName symfony3.com.devel
-		    ServerAlias www.symfony3.com.devel
-		    <Directory "c:/wamp/www/symfony3/web">
-		        Options Indexes FollowSymLinks     
-		        AllowOverride All
-		        Order Deny,Allow
-		        Allow from all     
-		    </Directory> 
+			DocumentRoot "c:/wamp/www/symfony3"
+			ServerName symfony3.com.devel
+			ServerAlias www.symfony3.com.devel
+			<Directory "c:/wamp/www/symfony3/web">
+				Options Indexes FollowSymLinks     
+				AllowOverride All
+				Order Deny,Allow
+				Allow from all     
+			</Directory> 
 		</VirtualHost>
 		*/
 	//	Modificar el c:/wamp/ por la variable INSTALL_DIR y poner la ruta raíz del proyecto & "/public" --> Poner!
@@ -101,8 +101,8 @@
 	//	En /routes/web.php estan las rutas básicas para configurar los Métodos HTTP/acciones
 	//	Por defecto viene:
 		/*Route::get('/', function () {
-		    // return view('welcome'); // Esto devuelve una vista, pero yo podría hacer un echo
-		    echo "<h1>Hola mundo!</h1>";
+			// return view('welcome'); // Esto devuelve una vista, pero yo podría hacer un echo
+			echo "<h1>Hola mundo!</h1>";
 		});*/
 	//	Métodos http:
 	//		GET: Conseguir datos, POST: Guardar datos, PUT: Actualizar recursos, DELETE: Eliminar recursos 
@@ -141,21 +141,21 @@
 	//	Esto crea un archivo en /database/migrations, con una estructura para crear una tabla
 	//	Método up crea la tabla
 	/*	Schema::create('usuarios', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nombre', 255);
-            $table->string('email', 255);
-            $table->string('password', 255);
-            $table->integer('edad');
-            $table->timestamps();
-        });
+			$table->increments('id');
+			$table->string('nombre', 255);
+			$table->string('email', 255);
+			$table->string('password', 255);
+			$table->integer('edad');
+			$table->timestamps();
+		});
 	*/
 
-    //	Método down borra la tabla
-    /*	public function down()
-	    {
-	        Schema::drop('usuarios');
-	    }
-    */
+	//	Método down borra la tabla
+	/*	public function down()
+		{
+			Schema::drop('usuarios');
+		}
+	*/
 	//	Para ejecutar las migraciones creadas
 	//		Abrir la consola y ejecutar "php artisan migrate"
 
@@ -168,52 +168,53 @@
 	//		Crea un archivo en la carpeta /database/seeds
 	//	Dentro de la función Run() se puede pegar el siguiente código:
 	/*for($i = 0; $i < 20; $i ++){
-    		DB::table('frutas')->insert(array(
-    			'nombre' => 'Cereza ' . $i,
-    			'descripcion' => 'Descripción de la fruta n° ' . $i,
-    			'precio' => $i,
-    			'fecha' => date('Y-m-d')
-    		));
-    	}
+			DB::table('frutas')->insert(array(
+				'nombre' => 'Cereza ' . $i,
+				'descripcion' => 'Descripción de la fruta n° ' . $i,
+				'precio' => $i,
+				'fecha' => date('Y-m-d')
+			));
+		}
 
-    	$this->command->info('La tabla de frutas ha sido rellenada');*/
+		$this->command->info('La tabla de frutas ha sido rellenada');*/
 
-    //	Te crea 20 campos con esos datos al ejecutar php artisan db:seed --class=frutas_seed
+	//	Te crea 20 campos con esos datos al ejecutar php artisan db:seed --class=frutas_seed
 
-    //Controladores en Laravel
-    //	Para crear un controlador en Laravel se puede ir a la consola y escribir
-   	//		php artisan make:controller FrutaController
-    //		(crea en /app/Http/Controllers)
+	//Controladores en Laravel
+	//	Para crear un controlador en Laravel se puede ir a la consola y escribir
+	//		php artisan make:controller FrutaController
+	//		php artisan make:controller Carpetita\FrutaController --> Para crear en una carpeta
+	//		(crea en /app/Http/Controllers)
 
-    //	En el return view de un controlador, si la vista esta en una carpeta se pone:
-    //		return view('[Nombre carpeta].[Nombre vista]');
-    //		return view('fruta.create');
-    //			Esto devuelve el archivo /resources/views/fruta/create.blade.php
-    //			OJO este formato de archivo ----------------------^
+	//	En el return view de un controlador, si la vista esta en una carpeta se pone:
+	//		return view('[Nombre carpeta].[Nombre vista]');
+	//		return view('fruta.create');
+	//			Esto devuelve el archivo /resources/views/fruta/create.blade.php
+	//			OJO este formato de archivo ----------------------^
 
-    //	Para cada método de los controladores tengo que crear una ruta en /routes/web.php
-    //		Route::get('/configuracion','UserController@config')->name('config');
-    //		El campo name me sirve por ejemplo para hacer referencia a el en las vistas:
-    //			<a href="{{ route('config') }}">Link</a>
+	//	Para cada método de los controladores tengo que crear una ruta en /routes/web.php
+	//		Route::get('/configuracion','UserController@config')->name('config');
+	//		El campo name me sirve por ejemplo para hacer referencia a el en las vistas:
+	//			<a href="{{ route('config') }}">Link</a>
 
-    //	Enviar datos de un form a otro (Creo....)
-    //		Controlador que recibe:
-    //			public function Nombre(Request $request){
-    //				$request->input('[nombre del campo]')
+	//	Enviar datos de un form a otro (Creo....)
+	//		Controlador que recibe:
+	//			public function Nombre(Request $request){
+	//				$request->input('[nombre del campo]')
 
-    //ORM - Mapeo Relacional de Objetos
-    //	Para crear los modelos del MVC
-    //		Es una clase que representa un registro en particular de la BD
-    //	Por defecto Laravel ya trae configurado un modelo para usuarios
-    //		/app/User.php
-    //	Para crear un nuevo modelo entrar en cmd, ingresar a la carpeta del proyecto y ejecutar:
-    //		php artisan make:model [NombreModelo] // Por convención se declaran en singular
-    //	Por defecto crea los modelos de manera individual, si queremos que una instancia de un modelo tenga relacionado una instancia de otro modelo que se le relaciona, tengo que configurar Entidades/Relaciones (Ej: Factura->Cliente). Enlaza de forma fácil los objetos relacionados.
-    //	Abrir un modelo
-    //	Dentro de class poner: 
-    	/*class [NombreModelo] extends Model
+	//ORM - Mapeo Relacional de Objetos
+	//	Para crear los modelos del MVC
+	//		Es una clase que representa un registro en particular de la BD
+	//	Por defecto Laravel ya trae configurado un modelo para usuarios
+	//		/app/User.php
+	//	Para crear un nuevo modelo entrar en cmd, ingresar a la carpeta del proyecto y ejecutar:
+	//		php artisan make:model [NombreModelo] // Por convención se declaran en singular
+	//	Por defecto crea los modelos de manera individual, si queremos que una instancia de un modelo tenga relacionado una instancia de otro modelo que se le relaciona, tengo que configurar Entidades/Relaciones (Ej: Factura->Cliente). Enlaza de forma fácil los objetos relacionados.
+	//	Abrir un modelo
+	//	Dentro de class poner: 
+		/*class [NombreModelo] extends Model
 		{
-		    protected $table = '[Nombre de la Tabla que representa en la BD]'
+			protected $table = '[Nombre de la Tabla que representa en la BD]'
 		}*/
 	//	Despues, abajo de protected (...) se arman las relaciones, en este caso una de uno a muchos:
 		/*	public function [NombreFxModeloRelacionado](){
@@ -235,30 +236,30 @@
 	//	Luego puedo poner el siguiente código:
 		/*	$images = Image::all();
 
-	      	foreach($images as $image){
-		    	var_dump($image);
-		  	}
+			foreach($images as $image){
+				var_dump($image);
+			}
 		*/
 	//	El método all no lo programé yo, ya viene por defecto, y te tira todas las ocurrencias de esa clase en la base, en este caso "Image". Igualmente sale medio "sucio", ya que viene con un montón de datos internos/métodos/.....algo...
 
 	//	Puedo limpiar un poco todo haciendo el foreach de la siguiente forma:
 		/*	$images = Image::all();
 
-	      	foreach($images as $image){
-		    	//echo $image->[Nombre de campo en la DB];
-		    	echo $image->image_path . "<br />";
-		    	echo $image->description . "<hr />";
-		  	}
+			foreach($images as $image){
+				//echo $image->[Nombre de campo en la DB];
+				echo $image->image_path . "<br />";
+				echo $image->description . "<hr />";
+			}
 		*/	 
 	//	Saca todo en formato de objeto
 
 	//	Puedo usar un método "BelongsTo", de manera de relacionarlo con el padre, y sacar alguna información de el.
 
 		/*	foreach($images as $image){
-			   	//echo $image->[Nombre de campo en la DB];
-			   	echo $image->image_path . "<br />";
-			   	echo $image->description . "<br />";
-			   	echo $image->user->name . " " . $image->user->surname . "<br />";
+				//echo $image->[Nombre de campo en la DB];
+				echo $image->image_path . "<br />";
+				echo $image->description . "<br />";
+				echo $image->user->name . " " . $image->user->surname . "<br />";
 			}
 		*/	
 	//User en este caso, es un "belongsTo" que está definido en el ORM /app/image.php, de esta manera hace el enganche
@@ -266,14 +267,14 @@
 	//	Para relacionar un objeto con sus hijos puedo usar un hasMany, de la siguiente forma:
 
 		/*	foreach($images as $image){
-			   	//echo $image->[Nombre de campo en la DB];
-			   	echo $image->image_path . "<br />";
-			   	echo $image->description . "<br />";
-			   	echo $image->user->name . " " . $image->user->surname . "<br />";
+				//echo $image->[Nombre de campo en la DB];
+				echo $image->image_path . "<br />";
+				echo $image->description . "<br />";
+				echo $image->user->name . " " . $image->user->surname . "<br />";
 
-			   	foreach($image->comments as $comment){
+				foreach($image->comments as $comment){
 					echo $comment->content . "<br/>";
-			   	}
+				}
 			}
 		*/
 	//	En este caso, el "método comments" no lo tengo que llamar con unos paréntesis, sino de 		esa manera.
@@ -315,9 +316,9 @@
 	//Todas las secciones del controlador HomeController son privadas, ya que en 				/app/Http/Controllers/HomeController está definido:
 		/*
 			public function __construct()
-		    {
-		        $this->middleware('auth');
-		    }
+			{
+				$this->middleware('auth');
+			}
 		*/
 	//	el cual aplica a ese controlador el Middleware de autenticación. Si no está logueado va al login. Si quiero que los demas controladores sean solo para usuarios tengo que incluir ese codigo en el controlador
 
@@ -326,8 +327,8 @@
 
 	//Para crear plantillas propias
 	//	Chequear /resources/views/auth/register.blade.php, arriba del todo hay un:
-		    /*
-		    @extends('layouts.app')
+			/*
+			@extends('layouts.app')
 
 			@section('content')
 			[Contenido html]
@@ -342,11 +343,11 @@
 	//		Entrar a /config/filesystems.php, copiar un nuevo objeto:
 				/*
 					'[Nombre que le queramos poner al Disco]' => [
-			            'driver' => 'local',
-			            'root' => storage_path('app/[Subcarpeta]'),
-			            'url' => env('APP_URL').'/storage',
-			            'visibility' => 'public',
-			        ],
+						'driver' => 'local',
+						'root' => storage_path('app/[Subcarpeta]'),
+						'url' => env('APP_URL').'/storage',
+						'visibility' => 'public',
+					],
 				*/
 	//	OJO!! Recordar agregar esto al tag Form, para poder subir imágenes:
 	//		enctype="multipart/form-data"
@@ -358,40 +359,58 @@
 
 	//	Para devolver una imagen, importar: use Illuminate\Http\Response;
 			/*public function getImage($filename){
-		        $file = Storage::disk('users')->get($filename);
-		        return new Response($file, 200);
-		    }*/
+				$file = Storage::disk('users')->get($filename);
+				return new Response($file, 200);
+			}*/
 	//	Crear una ruta: 
 	//	En la vista: 
-		    /*	@if(Auth::user()->image)
-               		<img src="{{ url('/user/avatar/' . Auth::user()->image) }}" />
-               	@endif
-            */
-    //	Validar una imagen: 'image_path'  => 'required|image' // Con validate
+			/*	@if(Auth::user()->image)
+					<img src="{{ url('/user/avatar/' . Auth::user()->image) }}" />
+				@endif
+			*/
+	//	Validar una imagen: 'image_path'  => 'required|image' // Con validate
 
-    //CSS - Agregar un archivo .css
-    //	En /public/css puedo crear una hoja de estilos
-    //	Para cargar esa hoja de estilos me voy al layout: /resources/views/layouts/app.blade.php
-    //		Buscar en el <head> <link href="{{ asset('css/[Nombre archivo].css') }}" rel="stylesheet">
+	//CSS - Agregar un archivo .css
+	//	En /public/css puedo crear una hoja de estilos
+	//	Para cargar esa hoja de estilos me voy al layout: /resources/views/layouts/app.blade.php
+	//		Buscar en el <head> <link href="{{ asset('css/[Nombre archivo].css') }}" rel="stylesheet">
 
-    //CSS propios, JS propios e Imágenes propias
-    //	Llamarlas con {{ asset('img/fondo.jpg') }}
+	//CSS propios, JS propios e Imágenes propias
+	//	Llamarlas con {{ asset('img/fondo.jpg') }}
 
-    //Includes!
-    //	Hice un include en /resources/views/users/config.blade.php // @include('includes.avatar')
+	//Includes!
+	//	Hice un include en /resources/views/users/config.blade.php // @include('includes.avatar')
 
-    //	Para grabar con ORMs en la parte superior del controlador tengo que hacer un:
-    //		use App\[Nombre Modelo];
-   	//		use App\Image; // En Luquinstagram
+	//	Para grabar con ORMs en la parte superior del controlador tengo que hacer un:
+	//		use App\[Nombre Modelo];
+	//		use App\Image; // En Luquinstagram
 
-    //Paginación en Laravel
-    //	Se puede usar el método paginate:
-    //		$images = Image::orderBy('id', 'desc')->paginate(3);
-    //	Para agregar la paginación dentro de la vista:
-    //		{{ $images->links() }}
+	//Paginación en Laravel
+	//	Se puede usar el método paginate:
+	//		$images = Image::orderBy('id', 'desc')->paginate(3);
+	//	Para agregar la paginación dentro de la vista:
+	//		{{ $images->links() }}
 
-    //Manejo de Json en Laravel (o PHP en realidad)
-    //	Ver /facturacion-lu/JsonController
+	//Manejo de Json en Laravel (o PHP en realidad)
+	//	Ver /facturacion-lu/JsonController
+
+/*
+	LARAVEL 7
+		Make Auth ya no va mas! :o
+			Ejecutar en CMD
+				composer require laravel/ui
+				php artisan ui vue --auth 
+					(Ver que onda si se hace con bootstrap o React)
+					Me preguntó si quería reemplazar app.blade.php, le puse que no
+
+				Despues tuve que correr en CMD
+					npm install
+					npm run dev	
+
+
+
+*/
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 // COSAS PARA REVISAR

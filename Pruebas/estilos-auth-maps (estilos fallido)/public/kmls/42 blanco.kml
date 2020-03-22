@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<kml>
+	<Document>
+		<!-- Begin Style Definitions xmlns="http://earth.google.com/kml/2.2"-->
+		<Style id="color1">
+			<LineStyle>
+				<color>d9686868</color>
+				<width>2</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>d9FFFFFF</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+			<BalloonStyle>
+				<text><![CDATA[$[description]]]></text>
+			</BalloonStyle>
+		</Style>
+		<Style id="color2">
+			<LineStyle>
+				<color>d9686868</color>
+				<width>2</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>d900CC33</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+			<BalloonStyle>
+				<text><![CDATA[$[description]]]></text>
+			</BalloonStyle>
+		</Style>
+		<Style id="color3">
+			<LineStyle>
+				<color>d9686868</color>
+				<width>2</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>d966FFFF</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+			<BalloonStyle>
+				<text><![CDATA[$[description]]]></text>
+			</BalloonStyle>
+		</Style>
+		<Style id="color4">
+			<LineStyle>
+				<color>d9686868</color>
+				<width>2</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>d90080FF</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+			<BalloonStyle>
+				<text><![CDATA[$[description]]]></text>
+			</BalloonStyle>
+		</Style>
+		<Style id="color5">
+			<LineStyle>
+				<color>d9686868</color>
+				<width>2</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>d9FF5555</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+			<BalloonStyle>
+				<text><![CDATA[$[description]]]></text>
+			</BalloonStyle>
+		</Style>
+		<Style id="color6">
+			<LineStyle>
+				<color>d9686868</color>
+				<width>2</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>d90000ff</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+			<BalloonStyle>
+				<text><![CDATA[$[description]]]></text>
+			</BalloonStyle>
+		</Style>
+		<Style id="color7">
+			<LineStyle>
+				<color>d9686868</color>
+				<width>2</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>d9000000</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+			<BalloonStyle>
+				<text><![CDATA[$[description]]]></text>
+			</BalloonStyle>
+		</Style>
+		<Style id="color8">
+			<LineStyle>
+				<color>d9686868</color>
+				<width>2</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>d9ffff00</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+			<BalloonStyle>
+				<text><![CDATA[$[description]]]></text>
+			</BalloonStyle>
+		</Style>
+		<Style id="color99">
+			<LineStyle>
+				<color>d9686868</color>
+				<width>2</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>d9B5B5B5</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+			<BalloonStyle>
+				<text><![CDATA[$[description]]]></text>
+			</BalloonStyle>
+		</Style>
+		<Style id="lineasProvinciales">
+			<LineStyle>
+				<color>d90082c3</color>
+				<width>3</width>
+			</LineStyle>
+			<BalloonStyle>
+				<text><![CDATA[$[description]]]></text>
+			</BalloonStyle>
+		</Style>
+		<Folder>
+			<name>DEPARTAMENTOS</name>
+			<description/>
+			<Placemark id="351">
+				<description><![CDATA[<B>Departamento</B><BR><BR>ATREUCO]]></description>
+				<styleUrl>#color1</styleUrl>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates> -63.3913541911,-36.8132269332,0 -64.1666967978,-36.8109532795,0 -64.1682147674,-37.2656664730,0 -63.3923166873,-37.2693175327,0 -63.3913541911,-36.8132269332,0 </coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark id="353">
+				<description><![CDATA[<B>Departamento</B><BR><BR>CALEU CALEU]]></description>
+				<styleUrl>#color1</styleUrl>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates> -63.3901169511,-38.2566649914,0 -64.5137689343,-38.2503243293,0 -64.5159039332,-38.8530233579,0 -64.3757591643,-38.8749460764,0 -64.0722923932,-38.9860845781,0 -64.0610357251,-39.0019118360,0 -64.0023371980,-39.0073879133,0 -63.9873469341,-39.0410037398,0 -63.9509329423,-39.0507989425,0 -63.9054690098,-39.0956712997,0 -63.7668045317,-39.1276532370,0 -63.7323686160,-39.1805740826,0 -63.6296553151,-39.2416688092,0 -63.5518613664,-39.2580610876,0 -63.5325913270,-39.2880301676,0 -63.4598428109,-39.3157597185,0 -63.3893818568,-39.3179551329,0 -63.3901169511,-38.2566649914,0 </coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark id="344">
+				<description><![CDATA[<B>Departamento</B><BR><BR>CAPITAL]]></description>
+				<styleUrl>#color1</styleUrl>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates> -63.9375875591,-36.2709638668,0 -64.4917459796,-36.2676421464,0 -64.4977945597,-36.6244617404,0 -64.3534666953,-36.6253654494,0 -64.2802959067,-36.6938267695,0 -64.2798229715,-36.7161739404,0 -64.1663463969,-36.7168040679,0 -64.1666967978,-36.8109532795,0 -63.9384712348,-36.8116112076,0 -63.9375875591,-36.2709638668,0 </coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark id="350">
+				<description><![CDATA[<B>Departamento</B><BR><BR>CATRILO]]></description>
+				<styleUrl>#color1</styleUrl>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates> -63.3904456212,-36.3640198034,0 -63.9377478726,-36.3638425133,0 -63.9384712348,-36.8116112076,0 -63.3913541911,-36.8132269332,0 -63.3904456212,-36.3640198034,0 </coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark id="341">
+				<description><![CDATA[<B>Departamento</B><BR><BR>CHALILEO]]></description>
+				<styleUrl>#color1</styleUrl>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates> -66.0042908641,-35.9985172304,0 -67.1211766091,-35.9973105056,0 -67.1119445405,-36.8002452409,0 -65.9831953184,-36.7801841998,0 -66.0042908641,-35.9985172304,0 </coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark id="347">
+				<description><![CDATA[<B>Departamento</B><BR><BR>CHAPALEUFU]]></description>
+				<styleUrl>#color1</styleUrl>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates> -63.3934408961,-34.9979762526,0 -63.9395565881,-34.9977156477,0 -63.9377768654,-35.4597635590,0 -63.3901427594,-35.4586884375,0 -63.3934408961,-34.9979762526,0 </coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark id="355">
+				<description><![CDATA[<B>Departamento</B><BR><BR>CHICAL CO]]></description>
+				<styleUrl>#color1</styleUrl>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates> -67.1211766091,-35.9973105056,0 -68.2967579133,-35.9980432799,0 -68.2967837748,-36.1658081227,0 -68.2426680767,-36.1652352144,0 -68.2430248221,-36.8105772387,0 -67.1119445405,-36.8002452409,0 -67.1211766091,-35.9973105056,0 </coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark id="360">
+				<description><![CDATA[<B>Departamento</B><BR><BR>CONHELO]]></description>
+				<styleUrl>#color1</styleUrl>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates> -63.9367074633,-35.8175886874,0 -65.1039749344,-35.8072232224,0 -65.1031032634,-35.9964801028,0 -65.0445867611,-35.9988039702,0 -65.0487637788,-36.2617094820,0 -63.9375875591,-36.2709638668,0 -63.9367074633,-35.8175886874,0 </coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark id="354">
+				<description><![CDATA[<B>Departamento</B><BR><BR>CURA CO]]></description>
+				<styleUrl>#color1</styleUrl>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates> -65.6389424547,-37.6990573824,0 -65.6386573753,-37.6806947356,0 -67.0970507625,-37.7103721031,0 -67.0895537558,-38.3833858448,0 -66.9926409482,-38.4422286911,0 -66.9411638263,-38.4541481061,0 -66.8995170509,-38.4459534001,0 -66.8547537382,-38.4752142832,0 -66.7902088531,-38.4828201131,0 -66.6046752328,-38.5520100532,0 -66.5772149453,-38.6236923130,0 -66.5981720696,-38.6721050332,0 -66.5377244301,-38.7097011936,0 -66.4972845003,-38.7122312919,0 -66.4757775128,-38.7350076601,0 -66.4383358556,-38.7457700601,0 -66.3855546457,-38.7359300635,0 -66.3160904850,-38.7547852771,0 -66.2155123660,-38.7298903546,0 -66.1097610299,-38.7402887266,0 -66.0753635085,-38.7254705428,0 -66.0596918181,-38.7487386041,0 -65.9526751776,-38.7432853420,0 -65.9336882567,-38.7706337314,0 -65.9047435742,-38.7659205113,0 -65.8991840158,-38.7797252346,0 -65.8667039572,-38.7787468547,0 -65.8649398579,-38.7927343423,0 -65.8340559226,-38.7922892042,0 -65.8022099636,-38.8121023379,0 -65.7664916463,-38.8053254440,0 -65.6635214964,-38.8300894498,0 -65.6389424547,-37.6990573824,0 </coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark id="357">
+				<description><![CDATA[<B>Departamento</B><BR><BR>GUATRACHE]]></description>
+				<styleUrl>#color1</styleUrl>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates> -63.3923166873,-37.2693175327,0 -64.1682147674,-37.2656664730,0 -64.1686846701,-37.7175124922,0 -63.3933113930,-37.7205576867,0 -63.3923166873,-37.2693175327,0 </coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark id="352">
+				<description><![CDATA[<B>Departamento</B><BR><BR>HUCAL]]></description>
+				<styleUrl>#color1</styleUrl>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates> -63.3933113930,-37.7205576867,0 -64.5089601670,-37.7147949777,0 -64.5137689343,-38.2503243293,0 -63.3901169511,-38.2566649914,0 -63.3933113930,-37.7205576867,0 </coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark id="358">
+				<description><![CDATA[<B>Departamento</B><BR><BR>LIHUEL CALEL]]></description>
+				<styleUrl>#color1</styleUrl>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates> -64.5089601670,-37.7147949777,0 -65.6389424547,-37.6990573824,0 -65.6635214964,-38.8300894498,0 -65.6313257069,-38.8271457662,0 -65.5758314167,-38.7737112455,0 -65.4648128407,-38.7991805412,0 -65.3687607452,-38.8509918847,0 -65.3287890060,-38.8472109251,0 -65.2718630300,-38.8172251412,0 -65.1891697656,-38.8314082481,0 -65.1788879663,-38.8074026746,0 -65.1658099257,-38.8143091048,0 -65.1513989161,-38.8003963357,0 -65.1385855769,-38.8110218662,0 -65.0986794392,-38.8018391342,0 -64.9174751986,-38.8228019108,0 -64.8012543811,-38.8122000934,0 -64.5159039332,-38.8530233579,0 -64.5089601670,-37.7147949777,0 </coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark id="345">
+				<description><![CDATA[<B>Departamento</B><BR><BR>LIMAY MAHUIDA]]></description>
+				<styleUrl>#color1</styleUrl>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates> -65.9831953184,-36.7801841998,0 -67.1119445405,-36.8002452409,0 -67.0970507625,-37.7103721031,0 -65.9575087742,-37.6882592366,0 -65.9831953184,-36.7801841998,0 </coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark id="342">
+				<description><![CDATA[<B>Departamento</B><BR><BR>LOVENTUE]]></description>
+				<styleUrl>#color1</styleUrl>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates> -65.1031032634,-35.9964801028,0 -66.0042908641,-35.9985172304,0 -65.9782572506,-36.9606015879,0 -65.6231468663,-36.9530131863,0 -65.6241006631,-36.9782464457,0 -65.0611260301,-36.9864192221,0 -65.0445867611,-35.9988039702,0 -65.1031032634,-35.9964801028,0 </coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark id="348">
+				<description><![CDATA[<B>Departamento</B><BR><BR>MARACO]]></description>
+				<styleUrl>#color1</styleUrl>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates> -63.3901427594,-35.4586884375,0 -63.9377768654,-35.4597635590,0 -63.9368988448,-35.9122400439,0 -63.3889907860,-35.9129046924,0 -63.3901427594,-35.4586884375,0 </coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark id="356">
+				<description><![CDATA[<B>Departamento</B><BR><BR>PUELEN]]></description>
+				<styleUrl>#color1</styleUrl>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates> -67.1119445405,-36.8002452409,0 -68.2430248221,-36.8105772387,0 -68.2437409908,-37.5774142799,0 -67.8820867085,-37.6126459499,0 -67.7905056129,-37.6534665680,0 -67.7158995498,-37.8106597347,0 -67.7831409517,-37.9059426081,0 -67.8189780415,-37.9093216689,0 -67.8682946336,-37.9417801748,0 -67.9012823870,-37.9908862521,0 -67.8889242777,-38.0222803863,0 -67.8446535981,-38.0648349917,0 -67.7515410239,-38.0681335657,0 -67.7221150072,-38.1288509993,0 -67.6923377819,-38.1379316627,0 -67.6603574752,-38.1934097404,0 -67.5951862301,-38.2261481943,0 -67.5854855721,-38.2442958487,0 -67.5351625669,-38.2512527202,0 -67.4991920782,-38.2373047795,0 -67.3693605442,-38.2522509585,0 -67.3156244077,-38.2463077199,0 -67.2585732069,-38.2147014313,0 -67.1863831735,-38.2136786305,0 -67.1876777744,-38.2565998297,0 -67.1635994015,-38.2647775120,0 -67.1526402447,-38.3551315383,0 -67.0895537558,-38.3833858448,0 -67.1119445405,-36.8002452409,0 </coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark id="349">
+				<description><![CDATA[<B>Departamento</B><BR><BR>QUEMU QUEMU]]></description>
+				<styleUrl>#color1</styleUrl>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates> -63.3889907860,-35.9129046924,0 -63.9368988448,-35.9122400439,0 -63.9377478726,-36.3638425133,0 -63.3904456212,-36.3640198034,0 -63.3889907860,-35.9129046924,0 </coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark id="359">
+				<description><![CDATA[<B>Departamento</B><BR><BR>RANCUL]]></description>
+				<styleUrl>#color1</styleUrl>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates> -64.4853126694,-34.9975487793,0 -65.1075654317,-34.9972023528,0 -65.1039749344,-35.8072232224,0 -64.4891953388,-35.8140993017,0 -64.4853126694,-34.9975487793,0 </coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark id="339">
+				<description><![CDATA[<B>Departamento</B><BR><BR>REALICO]]></description>
+				<styleUrl>#color1</styleUrl>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates> -63.9395565881,-34.9977156477,0 -64.4853126694,-34.9975487793,0 -64.4875392433,-35.4583359967,0 -63.9377768654,-35.4597635590,0 -63.9395565881,-34.9977156477,0 </coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark id="343">
+				<description><![CDATA[<B>Departamento</B><BR><BR>TOAY]]></description>
+				<styleUrl>#color1</styleUrl>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates> -64.4917459796,-36.2676421464,0 -65.0487637788,-36.2617094820,0 -65.0611260301,-36.9864192221,0 -64.1673699362,-36.9954452632,0 -64.1663463969,-36.7168040679,0 -64.2798229715,-36.7161739404,0 -64.2802959067,-36.6938267695,0 -64.3534666953,-36.6253654494,0 -64.4977945597,-36.6244617404,0 -64.4917459796,-36.2676421464,0 </coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark id="340">
+				<description><![CDATA[<B>Departamento</B><BR><BR>TRENEL]]></description>
+				<styleUrl>#color1</styleUrl>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates> -63.9377768654,-35.4597635590,0 -64.4875392433,-35.4583359967,0 -64.4891953388,-35.8140993017,0 -63.9367074633,-35.8175886874,0 -63.9377768654,-35.4597635590,0 </coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark id="346">
+				<description><![CDATA[<B>Departamento</B><BR><BR>UTRACAN]]></description>
+				<styleUrl>#color1</styleUrl>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates> -64.1673699362,-36.9954452632,0 -65.6241006631,-36.9782464457,0 -65.6231468663,-36.9530131863,0 -65.9782572506,-36.9606015879,0 -65.9575087742,-37.6882592366,0 -65.6386573753,-37.6806947356,0 -65.6389424547,-37.6990573824,0 -64.1686846701,-37.7175124922,0 -64.1673699362,-36.9954452632,0 </coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+		</Folder>
+	</Document>
+</kml>
