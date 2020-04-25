@@ -7,6 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 	<title>Medilab Free Bootstrap HTML5 Template</title>
+	<link rel="shortcut icon" type="image/png" href="{{ asset('favicon.ico') }}"/>
 
 	<!-- CSRF Token -->	
 	<meta name="csrf-token" content="{{ csrf_token() }}">

@@ -65,7 +65,7 @@
 		$mail->CharSet = 'UTF-8';
 		$mail->SMTPAuth = true;
 		$mail->Username = 'ramosilucas@gmail.com'; // SMTP username
-		$mail->Password =  'ogbworhayknsuqty'; // Este es mi password de aplicaciones
+		$mail->Password =  'ogbworhayknsuqty'; // Este es mi password de aplicaciones // ogbworhayknsuqty
 
 		$mail->SMTPOptions = array(
 		   'ssl' => array(

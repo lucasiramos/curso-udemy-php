@@ -1,3 +1,6 @@
+﻿///////////////////////////////////////////////////////////////////////////////////////////////////////
+// Esto no hizo más falta.... creo.... je
+
 Primero, en el proyecto local, antes de subirlo a producción puse esto en composer.json
 
 "require": {
@@ -13,8 +16,25 @@ Ahi actualiza las dependencias.
 Despues en la consola:
 	php artisan key:generate
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
 Y en .env
 	APP_URL=http://grupodemusicaliturgica.org.ar/deploy
 	(cambiar el localhost, la BD y Usuario BD)
 	
 OJO! Ver los permisos que requiere Laravel
+
+Subir el zip del sitio
+
+Crear una carpeta en el mismo nivel que "public_html" / "www" / Carpeta de publicación.
+Copiar tooodo el proyecto a esa carpeta "fuera de publicación"
+
+Llevar el contenido (todos los archivos) que esten dentro de la carpeta Public a una carpeta dentro de "public_html", que coincida con el APP_URL.
+	APP_URL=http://grupodemusicaliturgica.org.ar/Lucas/real-demo-laravel
+
+
+Acomodar estas dos lineas:
+	require __DIR__.'/../vendor/autoload.php';
+	$app = require_once __DIR__.'/../bootstrap/app.php';
+
+	Apuntandolas a la carpeta "fuera de publicación" donde está todo el proyecto

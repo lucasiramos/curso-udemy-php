@@ -1,5 +1,7 @@
 {
     "require": {
-        "symfony/apache-pack": "^1.0"
+        "symfony/apache-pack": "^1.0",
+        "spatie/laravel-backup": "^6.9",
+        "laravel/slack-notification-channel": "^2.0"
     }
 }

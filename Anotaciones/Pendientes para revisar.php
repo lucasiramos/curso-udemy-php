@@ -13,7 +13,6 @@ Como hacer para configurar el UTF-3 a nivel general. Lo puedo hacer particularme
 	O bien ver que tome la hora/configuración local del server.
 
 Como usar los tokens para autenticación
-Repasar Migraciones
 Cron Jobs
 SSL - Certificados de seguridad... ¿como implementarlos?
 Como administrar una caché en Laravel
@@ -24,8 +23,6 @@ Como realizar compras/pagos
 Laravel Passport
 Login con face/twt/google
 Laravel 404 // Personalizar
-
-Ver webtraining.zone
 
 //////////////////////////////////////////
 LISTOS

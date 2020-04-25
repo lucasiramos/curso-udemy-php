@@ -67,6 +67,9 @@
 	//		composer create-project laravel/laravel [NOMBRE PROYECTO] "5.6.*" --prefer-dist
 	//			Ojo, ver el tema de la versión de Laravel, y el ¿--prefer-dist?
 
+	//Crear sistema de Backup de BD
+	//	Hacerlo despues de crear el proyectp (ver proyecto backup-cron)
+
 	//Crear host virtual
 	//	Entrar a la web de Victor Robles ¬¬ y buscar el artículo Crear varios hosts virtuales en Wamp Server
 	//	Abrir httpd.conf en C:\wamp64\bin\apache\apache2.4.37\conf
