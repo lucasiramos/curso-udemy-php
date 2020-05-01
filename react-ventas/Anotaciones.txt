@@ -1,0 +1,68 @@
+Cosas que me fueron pasando 25/4/2020
+
+Tuve que instalar Laravel con una versión anterior
+	composer create-project laravel/laravel="6.*" myProject
+
+	Me instaló la versión 6.18.10
+
+	Esto es porque en Cpanel de NetServices no podía hacer andar los Cron Jobs. Entonces, me instalé esa versión, y en composer.json tengo que agregar:
+		"symfony/translation": "4.3.8"
+		luego composer.update
+
+	Esto para hacer andar los Cron Jobs en Cpanel
+
+Luego, instalé Spatie, para hacer los backups
+
+Como puse campos especiales en tabla del usuario tuve que modificar:
+	/app/Http/Controllers/Auth/RegisterController.php
+		return User::create([
+			'name' => $data['name'],
+			'email' => $data['email'],
+			'password' => Hash::make($data['password']),
+			'descripcion' => $data['descripcion'],
+			'admin' => $data['admin'],
+		]);
+		(aca le agrego los campos extra que agrego)
+
+Para que te redirija a una URL según algun rol o info del usuario tuve que entrar a
+	/app/Http/Controllers/Auth/LoginController, y agregar:
+		protected function redirectTo()
+		{
+			if (auth()->user()->admin == '1') {
+				return '/administracion';
+			}else{
+				return '/ventas';
+			}
+		}
+
+		abajo de protected $redirectTo = '/home';
+		Entonces, si encuentra la función redirectTo() no le da bola a la variable
+
+	/app/Http/Middleware/RedirectIfAuthenticated.php, y comentar:
+		/* if (Auth::guard($guard)->check()) {
+            return redirect(RouteServiceProvider::HOME);
+        } */
+
+Si no está logueado, para que te redirija al raíz tuve que modificar:
+	/app/Http/Controllers/Middleware/Authenticate.php
+		protected function redirectTo($request)
+		{
+			if (! $request->expectsJson()) {
+				return route('/'); // Modifiqué esta ruta, antes tenía '/login'
+			}
+		}
+
+		Para esto, la ruta "Route::get('/'," tiene que tener al final "->name('/');"
+	Tambien poner grupos de rutas con Middleware en /routes/web.php
+
+Si ya está logueado y va a la página de inicio (que tiene login), para que no le dé la posibilidad de loguearse nuevamente, hice una validación en la ruta, dentro de /routes/web.php, a la ruta principal (/)
+
+Cuando hice una paginación con Eloquent, no me funcó Sucursales::all()->paginate(3), tuve que ponerle:
+	Sucursal::orderBy('id', 'asc')->paginate(3);
+
+Cuando quise instalar para hacer la exportación a PDF con
+	composer require barryvdh/laravel-dompdf
+
+	Entró en conflicto con "symfony/translation": "4.3.8"
+
+	Lo saqué del composer.json, despues le dí el require del pdf, puse el symfony 4.3.8 y le dí composer update de nuevo

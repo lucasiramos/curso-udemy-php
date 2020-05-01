@@ -1,0 +1,21 @@
+.unProducto{
+	display: flex;
+	flex-direction: column;
+}
+
+.imagenProducto{
+	text-align: center;
+}
+
+.imagenProducto img{
+	max-width: 200px;
+}
+
+.nombreProducto{
+	 
+}
+
+ul.pagination{
+	margin-bottom: 0px;
+	padding-bottom: 20px;
+}
