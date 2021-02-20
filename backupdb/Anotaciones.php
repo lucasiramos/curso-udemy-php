@@ -34,6 +34,15 @@ Realizar backups una vez al día
 
     Dentro de /app/Console/Kernel.php está para configurar cada cuanto se hace backup
 
+    Cron Job en CPanel
+    	/usr/local/bin/php /home/grupodem/real-demo-laravel/artisan schedule:run > /dev/null 2>&1
+
+    Para poner en Schedule
+    	$schedule->call(function(){
+            \Artisan::call('backup:run', ['--only-db' => 'true']);
+            \Log::info('Backup realizado!');
+        })->everyMinute();
+
     Para configurar que te mande notificaciones por Slack, dentro de /config/backup.php cambiar:
     	'notifications' => [
     		...['mail'] por ...['slack']

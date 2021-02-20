@@ -1,7 +1,7 @@
 <?php
 
 	
-	function Uno(){
+	/* function Uno(){
 		return "1";
 	}
 
@@ -16,6 +16,15 @@
 	$NumFx = "Dos";
 
 	echo "<h1>".$NumFx()."</h1>";
-	echo $NumFx();
+	echo $NumFx(); */
+	function consultarApi(){
+		echo '2<br/>';
+		$devuelvo = "Hola que tal";
+		echo '3<br/>';
+		return $devuelvo;
+	}
 
+	echo 'Arrancando <br/>';
+	$llamo = consultarApi();
+	echo $llamo;
 ?>

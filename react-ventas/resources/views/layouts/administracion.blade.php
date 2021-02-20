@@ -34,7 +34,7 @@
 				<a href="#" class="nav-link">¡Contactanos!</a>
 			</li>
 			<li class="nav-item d-none d-sm-inline-block">
-				<a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+				<a class="nav-link float-right" href="{{ route('logout') }}" onclick="event.preventDefault();
 					document.getElementById('logout-form').submit();">
 					Cerrar sesión
 				</a>

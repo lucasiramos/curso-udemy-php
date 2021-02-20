@@ -1,0 +1,2 @@
+composer require torann/geoip:^1.1
+https://lyften.com/projects/laravel-geoip/doc/

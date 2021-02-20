@@ -23,3 +23,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/estilos', 'Estilos\EstilosController@index')->name('estilos.index');
 Route::get('/maps', 'Maps\MapsController@index')->name('maps.index');
 Route::get('/maps/parse','Maps\MapsController@parse')->name('maps.parse');
+
+Route::get('/upload', 'Upload\UploadController@upload')->name('upload.index');

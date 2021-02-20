@@ -188,6 +188,7 @@
 	//		php artisan make:controller FrutaController
 	//		php artisan make:controller Carpetita\FrutaController --> Para crear en una carpeta
 	//		(crea en /app/Http/Controllers)
+	//		En ruta: Route::get('/fruta', 'Carpetita\FrutaController@function')->name('function');
 
 	//	En el return view de un controlador, si la vista esta en una carpeta se pone:
 	//		return view('[Nombre carpeta].[Nombre vista]');
@@ -245,6 +246,20 @@
 		*/
 	//	El método all no lo programé yo, ya viene por defecto, y te tira todas las ocurrencias de esa clase en la base, en este caso "Image". Igualmente sale medio "sucio", ya que viene con un montón de datos internos/métodos/.....algo...
 
+	/*
+		Claves foráneas personalizadas en HasMany y BelongsTo
+		Lo tengo que especificar en los dos lados. Un autor tiene muchos artículos:
+			Modelo Autor:
+				public function articulos(){
+			        return $this->hasMany('App\Articulo', 'creado_por');
+			    }
+
+			Modelo Artículo:
+			    public function user(){
+					return $this->belongsTo('App\User', 'creado_por');
+				}
+	*/
+
 	//	Puedo limpiar un poco todo haciendo el foreach de la siguiente forma:
 		/*	$images = Image::all();
 
@@ -286,6 +301,21 @@
 		/*
 			if(count($image->comments) >= 1)
 		*/
+
+	/*De Controller a Blade, Básico:
+	// Controller:
+	public function MuestraSeccion($slug){
+    	$parametro = "Paso el dato: " . $slug;
+        return view('secciones.seccion', [
+            'slug' => $parametro
+        ]);
+    }
+
+    // Blade:
+    <body style="font-family: Arial; margin:30px;">
+		<p>Hola que tal, soy una sección</p>
+		<b>{{ $slug }}</b>
+	</body> */
 
 	//login y registros de usuarios en Laravel
 	//	Abrir cmd, ir a la carpeta del proyecto y ejecutar:
@@ -397,6 +427,29 @@
 	//Manejo de Json en Laravel (o PHP en realidad)
 	//	Ver /facturacion-lu/JsonController
 
+	
+	//QueryBuilder
+		//$seccion = Seccion::where('slug', $slug)->first();
+
+		//Busco por id principal:
+		/*$seccion = Seccion::find(1);
+		var_dump($seccion->nombre);
+		die(); */
+
+		//Traigo toda la colección
+		/*$secciones = Seccion::get();
+		foreach ($secciones as $seccion) {
+			var_dump($seccion->nombre);
+		}
+		die();*/
+
+		//Traigo toda la colección que cumpla con un criterio
+		/*$secciones = Seccion::where('id', '<', '3')->get();
+		foreach ($secciones as $seccion) {
+			var_dump($seccion->nombre);
+		}
+		die();*/
+
 /*
 	LARAVEL 7
 		Make Auth ya no va mas! :o
@@ -410,6 +463,10 @@
 					npm install
 					npm run dev	
 
+	Laravel 6.*
+		Para que funque Cron Jobs en Netservices
+			composer require laravel/ui="1.*" --dev
+			https://stackoverflow.com/questions/59265377/cant-make-composer-require-laravel-ui-dev-on-laravel-6-5-1
 
 
 */

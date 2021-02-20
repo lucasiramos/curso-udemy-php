@@ -1,0 +1,38 @@
+Una vez que creé el proyecto tengo que instalar el paquete:
+	composer require beyondcode/laravel-websockets
+
+	php artisan vendor:publish --provider="BeyondCode\LaravelWebSockets\WebSocketsServiceProvider" --tag="migrations"
+
+	php artisan vendor:publish --provider="BeyondCode\LaravelWebSockets\WebSocketsServiceProvider" --tag="config"
+
+Dentro de .env 
+	Tengo que configurar la DB y también el elemento APP_URL, para que funcionen las estadísticas
+
+	BROADCAST_DRIVER=pusher
+
+	// Aca puedo poner lo que quiera
+	PUSHER_APP_ID=
+	PUSHER_APP_KEY=
+	PUSHER_APP_SECRET=
+
+Ejecutar migraciones
+	php artisan migrate
+
+Configurar /config/websockets.php
+	OJO que me falta el 'path' => env('PUSHER_APP_PATH'), // Falta variable de environment
+
+	No me funcaron las estadísticas :(
+
+Instalar este paquete:
+	composer require pusher/pusher-php-server "~3.0"
+
+Dentro de /config/broadcasting.php, en connections/pusher poner:
+	'options' => [
+        'cluster' => env('PUSHER_APP_CLUSTER'),
+        //'encrypted' => true,
+        'host' => '127.0.0.1',
+        'port' => 6001,
+        'scheme' => 'http'
+    ],
+
+Quede en: https://youtu.be/pIGy7-7gGXI?list=PLwAKR305CRO9rlj-U9oOi4m2sQaWN6XA8&t=1167

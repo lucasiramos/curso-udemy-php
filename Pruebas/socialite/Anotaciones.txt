@@ -1,0 +1,154 @@
+Creé del proyecto con:
+	composer create-project laravel/laravel="6.*" sspspanamerica
+
+Creé la DB, por ahora vacía
+
+Corrí las migraciones para crear la tabla de usuarios
+
+Ahora habilito el login de usuarios con:
+	composer require laravel/ui="1.*" --dev
+		Esto es porque estoy usando la versión 6.x de Laravel, para que funque Cron Jobs en NetServices
+
+	php artisan ui vue --auth
+	npm install
+	npm run dev
+
+Instalar socialite con
+	composer require laravel/socialite
+
+En Google y Face crear las aplicaciones de Login
+	https://www.youtube.com/watch?v=weYKMMWkXa0&ab_channel=CodersFree
+
+	Despues crear en el .env las entradas:
+		FACEBOOK_CLIENT_ID=772285406716993
+		FACEBOOK_CLIENT_SECRET=0da4d60148d20143950262243991aed3
+		FACEBOOK_REDIRECT_URL=http://localhost:4741/curso-udemy-php/Pruebas/seis/public/login/facebook/callback
+
+		GOOGLE_CLIENT_ID=486596454029-kbk19iad6csr25m6ns6450p0bd40toku.apps.googleusercontent.com
+		GOOGLE_CLIENT_SECRET=d7I5ZkrsoNyEMdS1PGfLNQEE
+		GOOGLE_REDIRECT_URL=http://localhost:4741/curso-udemy-php/Pruebas/seis/public/login/google/callback
+
+En /config/services.php pegar las referencias:
+	'facebook' => [
+		'client_id' => env('FACEBOOK_CLIENT_ID'),
+		'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+		'redirect' => env('FACEBOOK_REDIRECT_URL'),
+	],
+
+	'google' => [
+		'client_id' => env('GOOGLE_CLIENT_ID'),
+		'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+		'redirect' => env('GOOGLE_REDIRECT_URL'),
+	],
+
+En /app/Http/Controllers/Auth/LoginController.php agregar
+	use Laravel\Socialite\Facades\Socialite;
+
+	public function redirectToProvider($driver)
+	{
+		return Socialite::driver($driver)->redirect();
+	}
+
+	/**
+	 * Obtain the user information from GitHub.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function handleProviderCallback($driver)
+	{
+		$user = Socialite::driver($driver)
+			->setHttpClient(new \GuzzleHttp\Client(['verify' => false]))
+			->user();
+
+		dd($user);
+
+		// $user->token;
+	}
+
+Crear rutas
+	Route::get('login/{driver}', 'Auth\LoginController@redirectToProvider');
+	Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallback');
+
+Agregar en vista de Login
+	<div class="form-group row">
+		<div class="col-md-6 offset-md-4">
+			<p style="text-align: center;">- o -</p>
+			<a href="{{ url('login/facebook') }}" class="btn btn-block btn-primary">Inicia sesión con Facebook</a>
+			<a href="{{ url('login/google') }}" class="btn btn-block btn-danger">Inicia sesión con Google</a>
+		</div>
+	</div>	
+
+Crear modelo para tabla con datos sociales
+	php artisan make:model SocialProfile -m
+		(ver migraciones, porque hice borrado en cascada)
+
+En /app/User.php
+	use App\SocialProfile;
+
+	public function socialProfiles(){
+		return $this->hasMany(SocialProfile::class);
+	}
+
+En /app/SocialProfile.php
+	use App\User;
+
+	public function user(){
+		return $this->belongsTo(User::class);
+	}
+
+En /app/SocialProfile.php
+	protected $fillable = ['user_id', 'social_id', 'social_name', 'social_avatar'];
+
+En /app/Http/Controllers/Auth/LoginController
+	use Illuminate\Http\Request; // Arriba
+
+	En handleProviderCallback()
+		(ver...)
+
+
+Cuentas de pruebas
+	Gmail
+		olguitaeninta@gmail.com
+		threepwood
+
+	Facebook
+		olguitaeninta@gmail.com
+		threepwood
+
+Posibles páginas para crear Términos y condiciones/Políticas de privacidad
+	https://politicadeprivacidadplantilla.com/
+	https://terminosycondicionesdeusoejemplo.com/
+
+	https://app.privacypolicies.com/
+
+	Ver bien que es RGPD,... ¿afecta? Es para Europa solamente?
+
+Data Deletion Request Callback ¬¬
+	https://developers.facebook.com/docs/development/create-an-app/app-dashboard/data-deletion-callback
+
+	Intento implementar el ejemplo de esa página
+		Creo ruta
+			Route::get('/fb-login/gdpr/data-deletion-request-callback', 'Controller@fb_data_deletion')->name('fb.data.deletion');
+
+		Implementación de la funcionalidad de facebook
+			/app/Http/Controllers/Controller.php/fb_data_deletion()
+
+		También tengo que crear una ruta/implementación, en la cual el usuario pueda corroborar si sus datos fueron eliminados
+
+Una vez que implementé esto, puse la url para que el usuario pueda borrar sus datos, la pude pasar a producción y al intentar loguearme con mi face me salió este cartel:
+	URL bloqueada: Se produjo un error en el redireccionamiento porque el URI no está incluido en la lista blanca de la configuración del cliente de OAuth de la app. Comprueba que el inicio de sesión del cliente de OAuth y el inicio de sesión de OAuth web estén activados, y agrega todos los dominios de la app como URI de redireccionamiento de OAuth válidos.
+
+	Agregué el dominio de la App (https://www.grupodemusicaliturgica.org.ar/Lucas/socialite/) en Configuración básica (https://developers.facebook.com/apps/772285406716993/settings/basic/)
+		No me dio bola,... no se si será porque la aplicación no está en la raíz... debería probar con un hosting gratuito y que la app no sea una subcarpeta
+
+	CORREGIDO! Era porque me había olvidado de cambiar los valores en .env, de las url redirect, en producción.
+
+LISTO! Solo queda actualizar la información cada vez que se loguea (aunque... no se si es necesario)
+
+//////////////////////////////////////////////////////////////////////////////
+
+Netservices
+
+Nombre BD: grupodem_socialite
+Usuario BD: grupodem_socialite
+Contraseña usuario BD: Threepwood*4741

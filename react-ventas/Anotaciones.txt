@@ -1,3 +1,10 @@
+﻿
+Usuario de prueba en NetServices
+	Usuario: grupodem_ventasreactadmin
+	Contraseña: Threepwood*4741
+
+////////////////////////////////////////////////
+
 Cosas que me fueron pasando 25/4/2020
 
 Tuve que instalar Laravel con una versión anterior
@@ -60,9 +67,16 @@ Si ya está logueado y va a la página de inicio (que tiene login), para que no 
 Cuando hice una paginación con Eloquent, no me funcó Sucursales::all()->paginate(3), tuve que ponerle:
 	Sucursal::orderBy('id', 'asc')->paginate(3);
 
+VER! Con Eloquent
+	$post->comments()->with('user');
+		El with('user') creo que te hace un enganche más...
+
 Cuando quise instalar para hacer la exportación a PDF con
 	composer require barryvdh/laravel-dompdf
 
 	Entró en conflicto con "symfony/translation": "4.3.8"
 
 	Lo saqué del composer.json, despues le dí el require del pdf, puse el symfony 4.3.8 y le dí composer update de nuevo
+
+Cosas para cambiar cuando publico en NetServices
+	Usuario y BD en .env
